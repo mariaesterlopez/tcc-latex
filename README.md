@@ -7,4 +7,4 @@ Com o uso das redes sem fios, que disponibilizam Internet nos dispositivos móve
 
 O Trabalho foi desenvolvido como parte necessária para a obtenção do grau de Bacharel em Informática pela Universidade Estadual de Maringá.
 
-Este trabalho foi escrito em \LaTeX.
+Este trabalho foi escrito em \LaTeX com modificações da template https://github.com/uefs/ecomp-uefs-tcc-latex.

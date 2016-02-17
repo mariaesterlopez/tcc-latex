@@ -1,0 +1,34 @@
+%---------- Primeiro Capitulo ----------
+\chapter{Introdução}\label{cha:introducao}
+\section{Considerações iniciais}
+A evolução tecnológica, presente nos dias de hoje, possibilitou o desenvolvimento de dispositivos móveis que não são mais usados somente para a comunicação, mas para a execução de diversas aplicações que oferecem funcionalidades com alta qualidade de serviço, para as quais, há alguns anos atrás seriam necessários diversos equipamentos dedicados, como por exemplo: câmeras de alta resolução para a gravação de áudio e vídeo, computadores para a comunicação através de redes \sigla{Wi-Fi}{Wireless Fidelity} (\textit{Wireless Fidelity}) e aparelhos dedicados para o uso de \sigla{GPS}{Global Positioning System} (\textit{Global Positioning System}).
+
+Com o aumento do poder de processamento dos dispositivos móveis, estes deixaram de ser apenas instrumentos de comunicação para se tornarem também instrumentos de trabalho e entretenimento.
+Com o uso das redes sem fios, que disponibilizam o uso da Internet nos dispositivos móveis, a quantidade de serviços e conteúdos oferecidos aos usuários é imensa. Podem ser utilizados serviços como: correio eletrônico, navegação em sites, troca de mensagens instantâneas, download e upload de arquivos, conexão a bancos de dados, o uso de streaming de áudio e vídeo, e tudo o mais que a Internet possa oferecer.
+
+Todos esses serviços e produtos que estão disponíveis na Internet se beneficiam da qualidade das redes de computadores, como por exemplo, uma boa largura de banda e equipamentos de última geração, mas também podem ser prejudicados por alguma deficiência ou problema que aconteça com a rede, como o defeito em algum roteador, o congestionamento na rede ou uma arquitetura mal dimensionada. Assim, cada um dos provedores de conteúdo que o usuário acessa pode apresentar atributos relacionados aos serviços oferecidos, como por exemplo: número de clientes conectados, tempo de resposta, custo da licença para usar o serviço e a qualidade do serviço prestada.
+
+Os valores desses atributos podem ser modificados dependendo do contexto em que se encontra esse provedor. Dessa forma, esse conjunto de atributos pode ser relevante para o usuário no momento da escolha do provedor de conteúdo que atenderá as suas expectativas de forma satisfatória. Como essas informações podem ser alteradas, um serviço escolhido poderá não mais atender ao usuário de forma satisfatória, assim ele poderá procurar outro serviço semelhante que lhe atenda da forma desejada.
+
+Neste trabalho, essas informações serão importantes para a escolha do provedor de conteúdo, elas determinarão qual será o provedor que o usuário escolherá. Assim, este trabalho terá como tarefas a implementação de um serviço para dispositivos móveis que realize consultas a um gerente de autenticação (Broker) e a implementação do Broker, que realizará as autenticações necessárias para o usuário nos provedores de conteúdo, de forma transparente, baseando-se nos atributos que o usuário considera como mais relevantes.
+
+Este trabalho tem como base o trabalho realizado na dissertação de mestrado em Ciência da Computação de \cite{praca12}. Ela descreveu um modelo de autenticação baseado em informações de contexto, denominado HandProv, no qual o usuário efetua handover (troca de conexão de um ponto de acesso para outro sem perda ou interrupção dos serviços) de provedores de serviço de forma transparente.
+
+\begin{citacao}
+As autenticações podem ser feitas por meios de mecanismos padrões, como digitação de um login e senha. No entanto, o HandProv propõe um modelo de autenticação automática baseado em informações de contexto obtidas do ambiente por meio das entidades envolvidas e dispostas na rede, tais como informações do usuário, do dispositivo móvel, do provedor de serviço, de aplicações, etc, em que o usuário faz uso de uma aplicação para acessar os serviços de um provedor. \cite{praca12}
+\end{citacao}
+
+\section{Motivação}
+O grande salto na quantidade de dispositivos móveis utilizados pela população em geral, fez com que aparecessem novas necessidades de software. Alguns desses sistemas têm como objetivo a facilitação de resolução de tarefas do cotidiano do usuário.
+A disseminação do uso das redes sem fio, Wi-Fi e 3G, que possibilitam aos usuários estarem conectados à Internet, com uma boa largura de banda, faz com que os usuários passem uma parte considerável de seu tempo utilizando serviços e recursos disponibilizados pela rede.
+Devido a essa grande quantidade de serviços disponíveis e muitos deles oferecendo o mesmo tipo de conteúdo o usuário tem a opção de escolher o que atenda-o da melhor maneira.
+O problema que esse trabalho se propõe a resolver é o de escolher o serviço que melhor atenda as espectativas parametrizadas realizando as autenticações necessárias de forma transparente ao usuário.
+
+\section{Objetivos e Contribuições}
+O objetivo geral deste trabalho é o desenvolvimento de um sistema computacional para dispositivos móveis, tal que se comunique com um servidor (Broker), que realizará autenticações para o usuário, de forma transparente, em provedores de conteúdo, utilizando informações de contexto para a escolha de provedores que atendam os requisitos de qualidade de serviço definidos pelo usuário.
+Através dos estudos realizados das tecnologias utilizadas e das implementações dos sistemas, este trabalho ficará disponível à comunidade acadêmica como um exemplo de uma aplicação desenvolvida para dispositivos móveis que utiliza novas tecnologias, como por exemplo um banco de dados NoSQL\footnote{Sistemas de bancos de dados que utilizam formas de armazenar e devolver dados diferente dos que utilizam tabelas relacionais} e o desenvolvimento utilizando ferramentas disponibilizadas na nuvem.
+
+\section{Organização do trabalho}
+Neste trabalho o termo 'Dispositivos Móveis' será utilizado para representar o termo em inglês Smartphones, que categoriza uma linha de aparelhos celulares com sistemas operacionais multitarefas.
+
+Este trabalho está organizado da seguinte maneira: O Capítulo \ref{cha:introducao} apresenta o cenário no qual o trabalho se encaixa, a motivação e os objetivos desse trabalho. O Capítulo \ref{cha:fundamentacao} apresenta os principais conceitos sobre autenticação em sistemas computacionais. O Capítulo \ref{cha:visaogeral} apresenta algumas das principais tecnologias sobre dispositivos móveis presentes no mercado atualmente. O Capítulo \ref{cha:ferramentas} apresenta algumas das tecnologias mais conhecidas para o desenvolvimento de aplicativos móveis. O Capítulo \ref{cha:desenvolvimento} apresenta os sistemas que foram implementados e como eles funcionam. O Capítulo \ref{cha:conclusao} finaliza o trabalho de conclusão de curso com as contribuições e trabalhos futuros.

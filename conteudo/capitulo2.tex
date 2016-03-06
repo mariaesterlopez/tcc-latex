@@ -1,19 +1,20 @@
 %---------- Segundo Capitulo ----------
 \chapter{Fundamentação Teórica}\label{cha:fundamentacao}
 \section{Autenticação}
-Em sistemas computacionais em que a identificação e autenticação do usuário são premissas na segurança de transações e processos, é interessante manter mecanismos que ofereçam aos usuários, meios confiáveis no estabelecimento dessas conexões.
+Em sistemas computacionais em que a identificação e autenticação do usuário são premissas na segurança de transações e processos, é interessante manter mecanismos que ofereçam aos usuários, meios confiáveis no estabelecimento dessas conexões. Segundo \cite{tanenbaum2011computer} esse era um problema inexistente no início das comunicações pelas redes de computadores.
 \begin{citacao}
 Durante as primeiras décadas de sua existência, as redes de computadores foram usadas principalmente por pesquisadores universitários, com a finalidade de enviar mensagens de correio eletrônico, e também por funcionários de empresas, para compartilhar impressoras. Sob essas condições, a segurança nunca precisou de maiores cuidados. Porém, como milhões de cidadãos comuns atualmente estão usando as redes para executar operações bancárias, fazer compras e arquivar sua devolução de impostos, a segurança das redes está despontando no horizonte como um problema potencial.\cite{tanenbaum2011computer}
 \end{citacao}
 Frequentemente para utilizar algum recurso computacional é utilizada alguma das três técnicas de autenticação de usuários:
 
-\begin{footnotesize}
-	\begin{enumerate}[(a)]
+\begin{enumerate}[(a)]
 	\item Algo que o usuário sabe – uma senha, a resposta para alguma pergunta ou reconhecimento de algum padrão;
 	\item Algo que o usuário tem – um cartão magnético, um crachá ou um \textit{token} de segurança;
 	\item Como o usuário é – baseado em características biométricas.
-	\end{enumerate}
-\end{footnotesize}
+\end{enumerate}
+
+As técnicas (a) e (b) podem ser passíveis de fraude, tendo em vista que alguém possuindo tais informações/objetos pode facilmente conseguir acesso ao sistema como se fosse o verdadeiro usuário. Além disso, esses fatores necessitam da interação direta do usuário, isto é, o usuário deve informar estes dados para realizar a autenticação, geralmente via dispositivos de entrada comuns, como microfone, teclado ou tela, como no exemplo da Figura \ref{fig:trace}, onde é necessário o reconhecimento de um determinado padrão.
+\vspace{3cm}
 
 \begin{figure}[!htb]
 	\centering
@@ -23,22 +24,18 @@ Frequentemente para utilizar algum recurso computacional é utilizada alguma das
 	\label{fig:trace}
 \end{figure}
 
-As técnicas (a) e (b) podem ser passíveis de fraude, tendo em vista que alguém possuindo tais informações/objetos pode facilmente conseguir acesso ao sistema como se fosse o verdadeiro usuário. Além disso, esses fatores necessitam da interação direta do usuário, isto é, o usuário deve informar estes dados para realizar a autenticação, geralmente via dispositivos de entrada comuns, como microfone, teclado ou tela, como no exemplo da Figura \ref{fig:trace}.
-
 \subsection{O uso de senhas}
-Mesmo a autenticação através do uso de senhas ser o alvo de várias formas de ataque, ela é uma das mais empregadas como meio de assegurar a privacidade de sistemas.
+Mesmo a autenticação através do uso de senhas ser o alvo de várias formas de ataque, como podemos perceber na citação abaixo de um trecho da cartilha de segurança do CERT, ela é uma das mais empregadas como meio de assegurar a privacidade de sistemas.
 \begin{citacao}
 Algumas das formas como a sua senha pode ser descoberta são:
-	\begin{footnotesize}
-		\begin{enumerate}
+	\begin{enumerate}
 		\item Ao ser usada em computadores infectados. Muitos códigos maliciosos, ao infectar um computador, armazenam as teclas digitadas (inclusive senhas), espionam o teclado pela webcam (caso você possua uma e ela esteja apontada para o teclado) e gravam a posição da tela onde o mouse foi clicado;
 		\item Ao ser usada em sites falsos. Ao digitar a sua senha em um site falso, achando que está no site verdadeiro, um atacante pode armazená-la e, posteriormente, usá-la para acessar o site verdadeiro e realizar operações em seu nome;
 		\item Ao ser capturada enquanto trafega na rede, sem estar criptografada;
 		\item Com o uso de técnicas de engenharia social, como forma a persuadi-lo a entregá-la voluntariamente;
 		\item Pela observação da movimentação dos seus dedos no teclado ou dos cliques do mouse em teclados virtuais.
 		\cite{Cert2016}
-		\end{enumerate}
-	\end{footnotesize}
+	\end{enumerate}
 \end{citacao}
 
 Na tentativa de melhorar a segurança de seus sistemas e melhorar a eficiência no uso de senhas muitas organizações adotam políticas de segurança que impõem regras no uso das senhas, além disso, criam mecanismos para que as senhas tenham um determinado formato, utilizam algum algoritmo de criptografia e as senhas podem expirar em um determinado tempo.
@@ -60,7 +57,7 @@ A \sigla{NBR ISO/IEC 27001}{NBR ISO/IEC 27001 - Tecnologia da informação - Té
 \subsection{O uso de \normalfont\itshape tokens}
 O uso de senhas pode não ser seguro o suficiente para garantir a autenticidade e confidencialidade do usuário em alguns tipos de sistemas, como por exemplo o acesso a contas bancárias ou o acesso ao \sigla{SGBD}{Sistema de gerenciamento de banco de dados} (Sistema de gerenciamento de banco de dados) de uma aplicação crítica. Nesses sistemas é comum o uso de \textit{tokens}.
 
-\textit{Tokens} são pequenos dispositivos, do tamanho de um chaveiro, cujo nome técnico é \textit{Token} \sigla{OTP}{One Time Password} (\textit{One Time Password}). Eles geram uma sequência numérica que será utilizada como uma senha mas por um pequeno espaço de tempo, por volta de 60 segundos, depois desse tempo essa sequência numérica perde a validade.
+\textit{Tokens} são pequenos dispositivos, do tamanho de um chaveiro, como o exemplo apresentado na Figura \ref{fig:token}, cujo nome técnico é \textit{Token} \sigla{OTP}{One Time Password} (\textit{One Time Password}). Eles geram uma sequência numérica que será utilizada como uma senha mas por um pequeno espaço de tempo, por volta de 60 segundos, depois desse tempo essa sequência numérica perde a validade. Segundo a \cite{rfc2289} existem formas de ataques que podem capturar informações de identificação de um usuário e o uso de \textit{tokens} inutilizaria essas informações.
 
 \begin{citacao}
 Uma das formas de ataque em sistemas de computação em redes utilizam \textit{softwares} que escutam as conexões para obter informações de autenticação, tais como o \sigla{ID}{Identificação} (Identificação) e senha de usuários. Uma vez que esta informação é capturada, pode ser utilizado mais tarde para obter acesso ao sistema. Sistemas de senha de uso único são projetados para combater este tipo de ataque, chamado de "ataque de repetição".\cite{rfc2289}
@@ -69,10 +66,10 @@ Uma das formas de ataque em sistemas de computação em redes utilizam \textit{s
 \vspace{-3mm}
 \begin{figure}[!htb]
 	\centering
-	\includegraphics[width=0.2\textwidth]{token.png}
+	\includegraphics[width=0.3\textwidth]{token.png}
 	\vspace{-3mm}
 	\footnotesize
-	\caption[Dispositivo gerador de \textit{tokens}]{Dispositivo gerador de \textit{tokens}}
+	\caption[Dispositivo gerador de \textit{tokens}]{Dispositivo gerador de \textit{tokens} Fonte: \cite{rationalcdn}}
 	\label{fig:token}
 \end{figure}
 
@@ -90,13 +87,13 @@ Além de dispositivos geradores de \textit{tokens}, como no exemplo da Figura \r
 
 \subsection{O uso de biometria}
 A autenticação por biometria faz o uso de características fisiológicas de cada usuário como por exemplo impressões digitais, reconhecimentos facial, de íris e de voz.
-O reconhecimento de algumas dessas características pode negar acesso a um usuário legítimo devido a algumas questões, como por exemplo o uso de barba ou maquiagem que alteram o padrão da face ou um resfriado que pode alterar o padrão da voz.
+O reconhecimento de algumas dessas características pode negar acesso a um usuário legítimo devido a algumas questões, como diz \cite{Daugman2004} a face é um órgão social e apresenta variedade de expressões, como por exemplo o uso de barba ou maquiagem que alteram o padrão da face ou um resfriado que pode alterar o padrão da voz.
 
 \begin{citacao}
 Como em todos os problemas de reconhecimento de padrões, a questão-chave é a variabilidade: os objetos podem ser classificados de forma confiável apenas se a variabilidade entre diferentes instâncias de uma determinada classe é menor do que a variabilidade entre as diferentes classes. Por exemplo, no reconhecimento de face, as dificuldades surgem a partir do fato de que a face é um órgão social, mutável exibindo uma variedade de expressões. \cite{Daugman2004}
 \end{citacao}
 
-Algumas características fisiológicas não têm essa natureza mutável, como é o caso das impressões digitais e os padrões de cores da íris.
+Algumas características fisiológicas não têm essa natureza mutável, como é o caso das impressões digitais e os padrões de cores da íris, que segundo \cite{priscila2007} podem ser utilizadas como identificadores com um alto grau de confiabilidade.
 
 \begin{citacao}
 Com a utilização da íris como forma de identificação e autenticação de um indivíduo é possível obter um alto grau de segurança e confiabilidade, visto que a íris, além de ser uma característica inerente e única a cada ser humano, permanece inalterada durante toda sua vida, a não ser devido à ocorrência de algum evento externo que possa vir a danificá-la. Isto é, características biométricas são vantajosas sob o ponto de vista de que não precisam ser lembradas, como acontece com as senhas, e nem carregadas, como acontece com os cartões e tokens. \cite{priscila2007}
@@ -105,6 +102,8 @@ Com a utilização da íris como forma de identificação e autenticação de um
 \subsection{Combinação de técnicas de autenticação}
 O uso de autenticação por biometria ainda não oferece o custo benefício necessário para ser aplicado em grande escala, pois existe a necessidade de algum tipo de \textit{hardware} especial adicional para que seja possível realizar o reconhecimento.
 
+A Figura \ref{fig:finger} apresenta um modelo de um leitor biométrico que pode ser encontrado em lojas virtuas com preços que variam em torno de 20 dólares. Numa pesquisa por \textit{"iris recognition"}, no Ebay\footnote{http://www.ebay.com}, retornou aparelhos com valores por volta dos 1000 dólares.
+
 \begin{figure}[!htb]
 	\centering
 	\includegraphics[width=0.3\textwidth]{finger.png}
@@ -112,8 +111,6 @@ O uso de autenticação por biometria ainda não oferece o custo benefício nece
 	\caption[Leitor biométrico de impressão digital]{Leitor biométrico de impressão digital. Fonte: \cite{ebay}}
 	\label{fig:finger}
 \end{figure}
-
-A Figura \ref{fig:finger} apresenta um modelo de um leitor biométrico que pode ser encontrado em lojas virtuas com preços que variam em torno de 20 dólares. Numa pesquisa por \textit{"iris recognition"}, no Ebay\footnote{http://www.ebay.com}, retornou aparelhos com valores por volta dos 1000 dólares.
 
 Como esses aparelhos requerem investimentos, e na grande maioria dos casos os acessos aos sistemas acontecem de diversos pontos, o uso desses aparelhos se torna inviável.
 Dessa forma, alguns sistemas utilizam a combinação das técnicas do uso de senha e de \textit{tokens} para aumentar a segurança dos seus sistemas.

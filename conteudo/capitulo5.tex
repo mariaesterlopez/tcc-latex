@@ -1,6 +1,9 @@
 %---------- Quinto Capitulo ----------
 \chapter{Desenvolvimento}\label{cha:desenvolvimento}
-Este trabalho de conclusão de curso necessitou que fossem implementados uma aplicação servidora, o \textit{Broker}, que gerencia a escolha das aplicações que melhor atendem as configurações definidas pelo usuário; a aplicação para dispositivo móvel, onde o usuário realiza as configurações que deseja para cada tipo de serviço e que também consome esses serviços; e também alguns simuladores de provedores de serviço. Para armazenamento de dados, foi utilizado um banco de dados na nuvem. A Figura \ref{fig:arquitetura} mostra a organização da arquitetura do projeto, onde podemos ver um dispositivo móvel conectado à Internet, alguns provedores de serviços, o \textit{Broker} e o banco de dados utilizado pelo \textit{Broker}.
+Neste trabalho foram implementados uma aplicação servidora, o \textit{Broker}, que gerencia a escolha dos serviços que melhor atendem as configurações definidas pelo usuário; a aplicação para dispositivo móvel, onde o usuário realiza as configurações que deseja para cada tipo de serviço e que também consome esses serviços; e também alguns simuladores de provedores de serviço. Para armazenamento de dados, foi utilizado um banco de dados na nuvem.
+
+A Figura \ref{fig:arquitetura} mostra a organização da arquitetura do projeto, onde podemos ver um dispositivo móvel conectado à Internet, alguns provedores de serviços, o \textit{Broker} e o banco de dados utilizado pelo \textit{Broker}.
+
 Nessa arquitetura o cliente realiza a requisição do uso do serviço através do \textit{Broker}, que é o encarregado de escolher qual é o serviço que atende aos requisitos do usuário, como no exemplo apresentado pela Figura \ref{fig:arquiteturaexplicada} que explica o funcionamento da arquitetura.
 
 \begin{figure}[!htb]
@@ -19,9 +22,9 @@ Nessa arquitetura o cliente realiza a requisição do uso do serviço através d
 
 %----------------- Serviços -----------------
 \section{Serviços}
-Os dispositivos móveis são utilizados diariamente como 'computadores de bordo' pelas pessoas, são meios de obter informações sobre o que está acontecendo. No decorrer do dia a pessoa utiliza seu dispositivo para consultar email, trocar mensagens, consultar as condições do trânsito, condições climáticas, ler notícias do jornal, obter rotas, ouvir música e muito mais.
+Os dispositivos móveis são utilizados diariamente pelas pessoas para diversas tarefas, no decorrer do dia a pessoa utiliza seu dispositivo para consultar email, trocar mensagens, consultar as condições do trânsito, condições climáticas, ler notícias do jornal, obter rotas, ouvir música e muito mais.
 
-Muitos desses serviços necessitam que o usuário tenha uma conta registrada e que seja autenticado antes de utilizá-lo. E também são genéricos o suficiente para oferecer o serviço ao maior número de usuários possíveis.
+Muitos desses serviços necessitam que o usuário tenha uma conta registrada, que seja autenticado antes de utilizá-lo e também são genéricos o suficiente para oferecer o serviço ao maior número de usuários possíveis.
 
 Devido a essa característica de oferecer um serviço genérico, o usuário deve aplicar filtros na aplicação do serviço para obter a informação necessária.
 
@@ -37,7 +40,7 @@ Vamos utilizar como exemplo uma consulta ao serviço de metereologia, então o u
   \item Obtém as informações.
 \end{enumerate}
 
-Dependendo do tipo de serviço, esses passos serão sempre repetidos, principalmente o passo de autenticação, e as informações do usuário vão estar sempre expostas numa rede sem fio onde qualquer pessoa mal intensionada, com ferramentas adequadas, poderá capturá-las. E é esse tipo de problema que queremos resolver.
+Dependendo do tipo de serviço, esses passos serão sempre repetidos, principalmente o passo de autenticação, e as informações do usuário vão estar sempre expostas numa rede sem fio onde qualquer pessoa mal intensionada, com ferramentas adequadas, poderá capturá-las. Este é um dos problemas que queremos resolver.
 
 \subsection{Implementação de um serviço como prova de conceito}
 Como as implementações dos serviços não fazem parte do escopo deste trabalho, foram implementados apenas serviços incompletos que simulam o funcionamento de um serviço real. No caso, foram implementados três serviços que oferecem dados metereológicos falsos, sendo que em um deles é necessário que o usuário tenha sido previamente cadastrado, assim para obter as informações do serviço, precisará realizar a autenticação.
@@ -48,7 +51,7 @@ Existem provedores de serviços reais que oferecem esse tipo de API, como por ex
 
 \url{http://api.openweathermap.org/data/2.5/weather?q=Maringa,br&APPID=CHAVE_DO_USUARIO}
 
-Essa consulta retornaria um JSON com muitas informações da cidade de Maringá, como as coordenadas de localização da cidade e os dados metereológicos de temperatura, humidade, pressão, etc. Logo abaixo pode ser visto um resumo dessas informações:
+Essa consulta retornaria um JSON com muitas informações da cidade de Maringá, como as coordenadas de localização da cidade e os dados metereológicos de temperatura, umidade, pressão, etc. Logo abaixo pode ser visto um resumo dessas informações:
 
 \begin{verbatim}
     { "coord":{
@@ -82,19 +85,19 @@ Sendo que o primeiro necessita que o usuário seja registrado no serviço e que 
 
 \url{http://weather-provider.herokuapp.com/register/EMAIL_DO_USUARIO/UMA_SENHA}
 
-Como já foi dito, a implementação dos serviços não fazem parte do escopo do trabalho, então foram criadas apenas as interfaces REST necessárias para o funcionamento. Assim, as chamadas às interfaces destes serviços respondem com uma lista com objetos JSON com dados fictícios sobre o clima de algumas cidades do Paraná. Como no exemplo logo abaixo, onde temos dados metereológicos das cidades de Curitiba e Maringá, nesses objetos temos dados como temperatura, humidade e como está o céu:
+Como já foi dito, a implementação dos serviços não fazem parte do escopo do trabalho, então foram criadas apenas as interfaces REST necessárias para o funcionamento. Assim, as chamadas às interfaces destes serviços respondem com uma lista com objetos JSON com dados fictícios sobre o clima de algumas cidades do Paraná. Como no exemplo logo abaixo, onde temos dados metereológicos das cidades de Curitiba e Maringá, nesses objetos temos dados como temperatura (\textit{temperature}), umidade (\textit{humidity}), como está o céu (\textit{sky}) e quando aconteceu a última atualização (\textit{update}).
 
 \begin{verbatim}
   [{  "provider": "First Weather Provider",
       "city": "Curitiba",
       "temperature": 15,
-      "Humidity": 47,
+      "humidity": 47,
       "sky": "weather-cloudy",
       "update": "2016-01-28T03:06:06.756Z"
   },{ "provider": "First Weather Provider",
       "city": "Maringá",
       "temperature": 7,
-      "Humidity": 33,
+      "humidity": 33,
       "sky": "weather-rainy",
       "update": "2016-01-28T18:12:10.002Z"
   }...]
@@ -164,7 +167,7 @@ Depois de realizar as configurações iniciais, como:
   \item realizar \textit{login} na aplicação
 \end{enumerate}
 
-o usuário navegará até a aba de serviços, exibido na Figura \ref{fig:navegar}
+O usuário navegará até a aba de serviços, exibido na Figura \ref{fig:navegar}
 
 \begin{figure}[!htb]
   \centering
@@ -173,7 +176,7 @@ o usuário navegará até a aba de serviços, exibido na Figura \ref{fig:navegar
   \label{fig:navegar}
 \end{figure}
 
-o usuário deverá tocar no botão de configuração do endereço do provedor de serviço, em destaque na Figura \ref{fig:configurl}
+O usuário deverá tocar no botão de configuração do endereço do provedor de serviço, em destaque na Figura \ref{fig:configurl}
 
 \begin{figure}[!htb]
   \centering
@@ -182,7 +185,7 @@ o usuário deverá tocar no botão de configuração do endereço do provedor de
   \label{fig:configurl}
 \end{figure}
 
-e realizar a configuração do endereço, preenchendo os campos como os exibidos na Figura \ref{fig:registerurl}, se necessário, adicionar os dados de autenticação do provedor de serviço, essas serão as informações que o servidor utilizará para que sejam realizadas as autenticações necessárias de forma transparente.
+Realizar a configuração do endereço, preenchendo os campos como os exibidos na Figura \ref{fig:registerurl}, se necessário, adicionar os dados de autenticação do provedor de serviço, essas serão as informações que o servidor utilizará para que sejam realizadas as autenticações necessárias de forma transparente.
 
 \begin{figure}[!htb]
   \centering
@@ -200,7 +203,7 @@ Logo em seguida, o usuário deverá configurar suas preferências, tocando no bo
   \label{fig:configprefs}
 \end{figure}
 
-e realizar a configuração das preferências, que no caso para o tipo de serviço \textit{Weather} o usuário marcará se precisa que as informações sejam as mais atualizadas possíveis e qual a sua cidade de preferência, como mostrado na Figura \ref{fig:weatherprefs}
+Realizar a configuração das preferências, que no caso para o tipo de serviço \textit{Weather} o usuário marcará se precisa que as informações sejam as mais atualizadas possíveis e qual a sua cidade de preferência, como mostrado na Figura \ref{fig:weatherprefs}
 
 \begin{figure}[!htb]
   \centering
@@ -237,7 +240,7 @@ Como por exemplo o uso de uma \textit{tag} HTML como:
                   <genero />
 \end{verbatim}
 
-é mais expressivo do que:
+É mais expressivo do que:
 
 \begin{verbatim}
                   <label>Gênero: </label>
@@ -317,7 +320,7 @@ http://brokerserver.herokuapp.com/login} foi chamada com os parâmetros \textit{
 
 \subsection{Autenticação transparente}
 
-A Figura \ref{fig:registerurl} apresenta a tela onde o usuário cadastra o endereço dos provedores de serviço para cada tipo de serviço, além do endereço, são cadastrados também os dados de autenticação do usuário no provedor de serviço, esses dados são registrados no banco de dados que o \textit{Broker} utiliza e são recuperados para realizar a autenticação no provedor de serviço quando necessário.
+A Figura \ref{fig:registerurl} apresenta a tela onde o usuário cadastra o endereço dos provedores de serviço para cada tipo de serviço, além do endereço, são cadastrados também os dados de autenticação do usuário no provedor de serviço, esses dados são criptografados utilizando uma biblioteca Javascript chamada CryptoJS \footnote{https://code.google.com/archive/p/crypto-js/}, utiliza o algoritmo \sigla{AES}{Advanced Encryption Standard} (Advanced Encryption Standard) e são registrados no banco de dados que o \textit{Broker} utiliza e são recuperados e descriptografados para realizar a autenticação no provedor de serviço quando necessário.
 
 Dessa forma o usuário não precisa informar dados de autenticação sempre que precisar utilizar o serviço, pois o \textit{Broker} irá realizar a autenticação no provedor de serviço de forma automática.
 
@@ -354,7 +357,7 @@ A Figura \ref{fig:novosservicos} apresenta um exemplo dessa situação, onde na 
   \label{fig:novosservicos}
 \end{figure}
 
-No caso do \textit{Broker} isso foi fundamental pois cada vez que um novo serviço for ser oferecido será apenas necessário implementar o predicado, baseado nos atributos do serviço, e realizar o registro desse novo predicado no servidor, com a adição de uma única linha de código:
+No caso do \textit{Broker} isso foi fundamental pois cada vez que um novo serviço for oferecido será apenas necessário implementar o predicado, baseado nos atributos do serviço, e realizar o registro desse novo predicado no servidor, com a adição de uma única linha de código:
 
 \begin{verbatim}
       var novoservico = require('./novoservico.js');

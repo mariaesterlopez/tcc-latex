@@ -6,9 +6,13 @@ Os dispositivos móveis devem ser vistos como ferramentas que auxiliam e facilit
 
 Cada tipo de serviço apresenta um conjunto de atributos que são relevantes para o usuário no momento da escolha do serviço e conhecendo previamente quais são os valores de cada atributo, para cada usuário, essa escolha pode ser automatizada.
 
-Este foi o objetivo deste trabalho de conclusão de curso, a implementação de aplicações que permitam a configuração desses atributos relevantes e a escolha automática do serviço baseando-se nas configurações.
+Este foi o objetivo deste trabalho de conclusão de curso, a implementação de aplicações que permitam a configuração desses atributos relevantes ao usuário e a escolha automática do serviço baseando-se nas configurações definidas.
 
-Assim foi necessário a implementação de uma aplicação para dispositivos móveis onde o usuário configura quais são os valores para os atributos de cada tipo de serviço e que também, além de interface de configuração, é a aplicação consumidora dos serviços e a implementação de uma aplicação servidora que decide qual é o serviço que atende aos requisitos do usuário e realiza as autenticações necessárias de forma transparente para que o usuário tenha o serviço disponibilizado.
+Assim foi necessário a implementação de uma aplicação para dispositivos móveis onde o usuário configura quais são os valores para os atributos de cada tipo de serviço e que também, além de interface de configuração, é a aplicação consumidora dos serviços.
+
+Como também a implementação de uma aplicação servidora que decide qual é o serviço que atende aos requisitos do usuário e realiza as autenticações necessárias de forma transparente para que o usuário tenha o serviço disponibilizado.
+
+Para validar o funcionamento dos sistemas foram implementados serviços que simulam serviços de metereologia de algumas cidades do Paraná e um desses provedores necessita que seja realizada autenticação para o uso do serviço. Devido a implementação do filtro de metereologia o \textit{Broker} realizou as escolhas corretas e fez as autenticações necessárias automaticamente e entregou à aplicação no dispositivo móvel os dados fornecidos pelo provedor de serviço para serem consumidos.
 
 \section{Trabalhos futuros}
 As propostas para trabalhos futuros são:
